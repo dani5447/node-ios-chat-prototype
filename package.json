@@ -1,0 +1,19 @@
+{
+  "name": "sample-chat",
+  "version": "0.0.1",
+  "description": "A sample node-based chat application",
+  "dependencies": {
+      "express": "3.0.0",
+      "socket.io": "latest",
+      "underscore": "latest"
+  },
+  "author": "",
+  "license": "BSD",
+  "subdomain": "freechat",
+  "scripts": {
+    "start": "node ./scripts/web"
+  },
+  "engines": {
+    "node": "0.10.x"
+  }
+}
