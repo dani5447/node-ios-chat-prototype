@@ -17,13 +17,15 @@ class ViewController: UIViewController, UITextFieldDelegate, UINavigationControl
     
     let socket = SocketIOClient(socketURL: "localhost:8080")
     
+    //TODO temporarily hardset. In future allow user to logon with a user-specified name
+    let username = "testDefaultIOSUser"
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.addHandlers()
         self.socket.connect()
-        self.socket.emit("login", "testDefaultIOSUser")
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,29 +60,52 @@ class ViewController: UIViewController, UITextFieldDelegate, UINavigationControl
     func addHandlers() {
         socket.on("connect") {data, ack in
             print("socket connected")
-            //let others know you've connected
-            self.socket.emit("userJoined", "tempDefaultIOSUser");
-            self.socket.emit("login", "tempDefaultIOSUser");
+            
+            //log on
+            self.socket.emit("login", self.username);
+        }
+        
+        socket.on("loginNameExists") {data, ack in
+            //Show error, someone is already using that name
+            
+        }
+        
+        socket.on("loginNameBad") {data, ack in
+            //Show error, name is invalid
         }
         
         socket.on("welcome") {data, ack in
-            print("socket welcomed")
+            self.socket.emit("onlineUsers");
         }
         
         socket.on("onlineUsers") {data, ack in
             print("got online users")
+            //TODO add to online user list instead of printing
             if let users = data as? Array {
                 for user in users{
                     print(user)
                 }
             }
+        }
+        
+        socket.on("userJoined") {data, ack in
+            //Show user joined message
+            
+        }
+
+        socket.on("userLeft") {data, ack in
+            //Show user left message
+            
+        }
+        
+        socket.on("chat") {data, ack in
+            //Chat received, display it
             
         }
         
         // Using a shorthand parameter name for closures
         // Useful for debugging
         socket.onAny {print("Got event: \($0.event), with items: \($0.items)")}
-
     }
     
     
@@ -88,8 +113,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UINavigationControl
     @IBAction func sendMessage(sender: UIButton) {
         print("sending message " + messageInput.text!)
         
-        //TODO Actually send the message
+        //Send the message
+        self.socket.emit("chat", messageInput.text!);
         
+        //Clear input, dismiss keyboard
         messageInput.text = ""
         messageInput.resignFirstResponder()
     }
