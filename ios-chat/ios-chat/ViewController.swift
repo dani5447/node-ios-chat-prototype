@@ -1,3 +1,4 @@
+
 //
 //  ViewController.swift
 //  ios-chat
@@ -101,11 +102,26 @@ class ViewController: UIViewController, UITextFieldDelegate, UINavigationControl
         socket.on("chat") {data, ack in
             //Chat received, display it
             let message = (data[0]["message"]) as? String
-            let sender = (data[0]["sender"]) as? String
-
+            var sender = (data[0]["sender"]) as? String
+            var senderTextColor : UIColor;
+            
+            //custom formatting for my own messages
+            if(sender == self.username){
+                sender = "Me"
+                senderTextColor = UIColor.blueColor()
+            } else{
+                senderTextColor = UIColor.redColor()
+            }
+            
             let lbl = UILabel()
-            lbl.text = sender! + ": " + message!
-            lbl.textColor = UIColor.blueColor()
+            let myString:NSString = sender! + " : "  + message!
+            var myMutableString = NSMutableAttributedString()
+            myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 18.0)!])
+            
+            myMutableString.addAttribute(NSForegroundColorAttributeName, value: senderTextColor, range: NSRange(location:0,length:(sender!).characters.count))
+            
+            lbl.attributedText = myMutableString
+            
             self.chatStack.addArrangedSubview(lbl)
         }
         
