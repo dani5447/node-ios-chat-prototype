@@ -80,23 +80,36 @@ class ViewController: UIViewController, UITextFieldDelegate, UINavigationControl
         }
         
         socket.on("onlineUsers") {data, ack in
-            print("got online users")
-            //TODO add to online user list instead of printing
-            if let users = data as? Array {
-                for user in users{
-                    print(user)
-                }
-            }
+
         }
         
         socket.on("userJoined") {data, ack in
-            //Show user joined message
+            //Show user joined message if not my user
             
+            let newUser = data[0] as? String
+            
+            if(newUser != self.username){
+                let myString:NSString = newUser! + " joined"
+                var myMutableString = NSMutableAttributedString()
+                myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 18.0)!])
+                
+                myMutableString.addAttribute(NSForegroundColorAttributeName, value: UIColor.grayColor(), range: NSRange(location:0,length:myString.length))
+                
+                self.addChatItem(myMutableString)
+            }
         }
 
         socket.on("userLeft") {data, ack in
             //Show user left message
+            let user = data[0] as? String
             
+            let myString:NSString = user! + " left"
+            var myMutableString = NSMutableAttributedString()
+            myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 18.0)!])
+            
+            myMutableString.addAttribute(NSForegroundColorAttributeName, value: UIColor.grayColor(), range: NSRange(location:0,length:myString.length))
+            
+            self.addChatItem(myMutableString)
         }
         
         socket.on("chat") {data, ack in
@@ -113,21 +126,25 @@ class ViewController: UIViewController, UITextFieldDelegate, UINavigationControl
                 senderTextColor = UIColor.redColor()
             }
             
-            let lbl = UILabel()
             let myString:NSString = sender! + " : "  + message!
             var myMutableString = NSMutableAttributedString()
             myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 18.0)!])
             
             myMutableString.addAttribute(NSForegroundColorAttributeName, value: senderTextColor, range: NSRange(location:0,length:(sender!).characters.count))
             
-            lbl.attributedText = myMutableString
+           self.addChatItem(myMutableString)
             
-            self.chatStack.addArrangedSubview(lbl)
         }
         
         // Using a shorthand parameter name for closures
         // Useful for debugging
         socket.onAny {print("Got event: \($0.event), with items: \($0.items)")}
+    }
+    
+    func addChatItem(formattedText : NSMutableAttributedString){
+        let lbl = UILabel()
+        lbl.attributedText = formattedText
+        self.chatStack.addArrangedSubview(lbl)
     }
     
     
