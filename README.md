@@ -17,8 +17,8 @@ To run the web application:
 
 1. Clone the repo locally and cd to the folder
 2. Run `npm install`
-Either run `npm start` or manually cd to /scripts and run `node web.js`
-3. Open localhost:8080 to view
+3. Either run `npm start` or manually cd to /scripts and run `node web.js`
+4. Open localhost:8080 to view
 
 To run the iOS app/communicate with the web app:
 
