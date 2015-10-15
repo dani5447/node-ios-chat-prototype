@@ -62,6 +62,9 @@
 		C3171CF21BCE23B400995394 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3171CC41BCE23B400995394 /* WebSocket.swift */; settings = {ASSET_TAGS = (); }; };
 		C3171CF31BCE23B400995394 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3171CC41BCE23B400995394 /* WebSocket.swift */; settings = {ASSET_TAGS = (); }; };
 		C3171CF41BCE23B400995394 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3171CC41BCE23B400995394 /* WebSocket.swift */; settings = {ASSET_TAGS = (); }; };
+		C3171CF61BCF4E8D00995394 /* ChatItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3171CF51BCF4E8D00995394 /* ChatItem.swift */; settings = {ASSET_TAGS = (); }; };
+		C3171CF71BCF4E8D00995394 /* ChatItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3171CF51BCF4E8D00995394 /* ChatItem.swift */; settings = {ASSET_TAGS = (); }; };
+		C3171CF81BCF4E8D00995394 /* ChatItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3171CF51BCF4E8D00995394 /* ChatItem.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +114,7 @@
 		C3171CC21BCE23B300995394 /* SocketTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketTypes.swift; sourceTree = "<group>"; };
 		C3171CC31BCE23B300995394 /* SwiftRegex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftRegex.swift; sourceTree = "<group>"; };
 		C3171CC41BCE23B400995394 /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
+		C3171CF51BCF4E8D00995394 /* ChatItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +172,7 @@
 				C3171C8A1BCE1A6D00995394 /* Assets.xcassets */,
 				C3171C8C1BCE1A6D00995394 /* LaunchScreen.storyboard */,
 				C3171C8F1BCE1A6D00995394 /* Info.plist */,
+				C3171CF51BCF4E8D00995394 /* ChatItem.swift */,
 			);
 			path = "ios-chat";
 			sourceTree = "<group>";
@@ -360,6 +365,7 @@
 				C3171CC51BCE23B400995394 /* SocketAckEmitter.swift in Sources */,
 				C3171CEF1BCE23B400995394 /* SwiftRegex.swift in Sources */,
 				C3171C861BCE1A6D00995394 /* ViewController.swift in Sources */,
+				C3171CF61BCF4E8D00995394 /* ChatItem.swift in Sources */,
 				C3171C841BCE1A6D00995394 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,6 +382,7 @@
 				C3171CC91BCE23B400995394 /* SocketAckManager.swift in Sources */,
 				C3171CEA1BCE23B400995394 /* SocketStringReader.swift in Sources */,
 				C3171CD21BCE23B400995394 /* SocketEngineClient.swift in Sources */,
+				C3171CF71BCF4E8D00995394 /* ChatItem.swift in Sources */,
 				C3171CCF1BCE23B400995394 /* SocketEngine.swift in Sources */,
 				C3171CED1BCE23B400995394 /* SocketTypes.swift in Sources */,
 				C3171C991BCE1A6D00995394 /* ios_chatTests.swift in Sources */,
@@ -400,6 +407,7 @@
 				C3171CCA1BCE23B400995394 /* SocketAckManager.swift in Sources */,
 				C3171CEB1BCE23B400995394 /* SocketStringReader.swift in Sources */,
 				C3171CD31BCE23B400995394 /* SocketEngineClient.swift in Sources */,
+				C3171CF81BCF4E8D00995394 /* ChatItem.swift in Sources */,
 				C3171CD01BCE23B400995394 /* SocketEngine.swift in Sources */,
 				C3171CEE1BCE23B400995394 /* SocketTypes.swift in Sources */,
 				C3171CA41BCE1A6D00995394 /* ios_chatUITests.swift in Sources */,

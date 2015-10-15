@@ -53,7 +53,7 @@ var Server = function(options) {
 
 	  user.socket.on("chat", function(chat) {
 	    if (chat) {
-		      self.io.sockets.emit("chat", { sender: user.user, message: chat });
+		      self.io.sockets.emit("chat", { sender: user.user, message: chat }.toJSON());
 	    }
 	  });
   }

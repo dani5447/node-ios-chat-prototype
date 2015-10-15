@@ -12,8 +12,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UINavigationControl
     
     // MARK : Properties
     @IBOutlet weak var messageInput: UITextField!
-    @IBOutlet weak var chatView: UIScrollView!
     @IBOutlet weak var sendMessageButton: UIButton!
+    @IBOutlet weak var chatStack: UIStackView!
     
     let socket = SocketIOClient(socketURL: "localhost:8080")
     
@@ -100,7 +100,13 @@ class ViewController: UIViewController, UITextFieldDelegate, UINavigationControl
         
         socket.on("chat") {data, ack in
             //Chat received, display it
-            
+            let message = (data[0]["message"]) as? String
+            let sender = (data[0]["sender"]) as? String
+
+            let lbl = UILabel()
+            lbl.text = sender! + ": " + message!
+            lbl.textColor = UIColor.blueColor()
+            self.chatStack.addArrangedSubview(lbl)
         }
         
         // Using a shorthand parameter name for closures
@@ -111,8 +117,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UINavigationControl
     
     // MARK: Actions
     @IBAction func sendMessage(sender: UIButton) {
-        print("sending message " + messageInput.text!)
-        
         //Send the message
         self.socket.emit("chat", messageInput.text!);
         
